@@ -19,19 +19,6 @@ from config import (
     TG_BOT_WORKERS,
 )
 
-async def get_chat_info(chat_id):
-    try:
-        info = await self.get_chat(chat_id)
-        link = info.invite_link
-        if not link:
-            await self.export_chat_invite_link(chat_id)
-            link = info.invite_link
-        return link, info.title, info.id
-    except PeerIdInvalid:
-        self.LOGGER(__name__).warning(f"Peer ID {chat_id} is invalid.")
-    except Exception as e:
-        self.LOGGER(__name__).error(f"Failed to get chat info for {chat_id}: {e}")
-
 class Bot(Client):
     def __init__(self):
         super().__init__(
