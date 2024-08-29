@@ -10,6 +10,7 @@ from config import ADMINS, FORCE_SUB_1, FORCE_SUB_2, FORCE_SUB_3, FORCE_SUB_4, F
 from pyrogram import filters
 from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
+from pyrogram.types import ChatMemberStatus
 
 
 # Flexiable 1 Subs
