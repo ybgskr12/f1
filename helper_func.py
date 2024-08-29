@@ -25,7 +25,7 @@ async def subsone(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 
 async def substwo(filter, client, update):
@@ -39,7 +39,7 @@ async def substwo(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 
 async def substri(filter, client, update):
@@ -53,7 +53,7 @@ async def substri(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 
 async def subsfour(filter, client, update):
@@ -67,7 +67,7 @@ async def subsfour(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 
 # Flexiable 2 Subs
@@ -88,7 +88,7 @@ async def subsonetwo(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 
 async def subsonetri(filter, client, update):
@@ -108,7 +108,7 @@ async def subsonetri(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 
 # Flexiable 3 Subs
@@ -135,7 +135,7 @@ async def subsonetwotri(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 
 # Flexiable 4 Subs
@@ -168,7 +168,7 @@ async def subsfours(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 # Flexiable 5 Subs
 async def subsfives(filter, client, update):
@@ -206,7 +206,7 @@ async def subsfives(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 # Flexiable 6 Subs
 async def subssixs(filter, client, update):
@@ -250,7 +250,7 @@ async def subssixs(filter, client, update):
     except UserNotParticipant:
         return False
 
-    return member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]
+    return member.status in ["ChatMemberStatus.OWNER", "ChatMemberStatus.ADMINISTRATOR", "ChatMemberStatus.MEMBER"]
 
 async def encode(string):
     string_bytes = string.encode("ascii")
