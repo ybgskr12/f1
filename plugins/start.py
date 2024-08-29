@@ -56,8 +56,10 @@ async def start_command(client: Bot, message: Message):
     user_name = "@" + message.from_user.username if message.from_user.username else None
     try:
         await add_user(id, user_name)
-    except:
+    except Exception as e:
+        LOGGER(__name__).error(f"Error saat menambahkan user: {str(e)}")
         pass
+
     text = message.text
     if len(text) > 7:
         try:
@@ -66,12 +68,15 @@ async def start_command(client: Bot, message: Message):
             return
         string = await decode(base64_string)
         argument = string.split("-")
+
         if len(argument) == 3:
             try:
                 start = int(int(argument[1]) / abs(client.db_channel.id))
                 end = int(int(argument[2]) / abs(client.db_channel.id))
-            except BaseException:
+            except BaseException as e:
+                LOGGER(__name__).error(f"Error saat menghitung start dan end: {str(e)}")
                 return
+
             if start <= end:
                 ids = range(start, end + 1)
             else:
@@ -85,18 +90,27 @@ async def start_command(client: Bot, message: Message):
         elif len(argument) == 2:
             try:
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
-            except BaseException:
+            except BaseException as e:
+                LOGGER(__name__).error(f"Error saat menghitung id: {str(e)}")
                 return
+
+        # Log untuk memeriksa nilai ids
+        LOGGER(__name__).info(f"IDs yang dihasilkan: {list(ids)}")
+
         temp_msg = await message.reply("<code>Tunggu Sebentar...</code>")
         try:
             messages = await get_messages(client, ids)
-        except BaseException:
-            await message.reply_text("<b>Telah Terjadi Error </b>🥺")
+            # Log untuk memeriksa jumlah pesan yang diambil
+            LOGGER(__name__).info(f"Jumlah pesan yang diambil: {len(messages)}")
+        except BaseException as e:
+            await temp_msg.delete()
+            await message.reply_text(f"<b>Telah Terjadi Error </b>🥺\n{str(e)}")
+            LOGGER(__name__).error(f"Error saat mengambil pesan: {str(e)}")
             return
+
         await temp_msg.delete()
 
         for msg in messages:
-
             if bool(CUSTOM_CAPTION) & bool(msg.document):
                 caption = CUSTOM_CAPTION.format(
                     previouscaption="" if not msg.caption else msg.caption.html,
@@ -124,7 +138,8 @@ async def start_command(client: Bot, message: Message):
                     protect_content=PROTECT_CONTENT,
                     reply_markup=reply_markup,
                 )
-            except BaseException:
+            except BaseException as e:
+                LOGGER(__name__).error(f"Error saat menyalin pesan: {str(e)}")
                 pass
     else:
         out = start_button(client)
@@ -144,7 +159,6 @@ async def start_command(client: Bot, message: Message):
         )
 
     return
-
 
 @Bot.on_message(filters.command("start") & filters.private)
 async def not_joined(client: Bot, message: Message):
