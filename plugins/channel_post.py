@@ -98,7 +98,9 @@ async def process_message(client: Client, message: Message):
     if DISABLE_CHANNEL_BUTTON:
         return
 
-    converted_id = message.message_id * abs(client.db_channel.id)
+    # Menggunakan `message.id` sebagai alternatif jika `message.message_id` tidak tersedia
+    message_id = getattr(message, 'message_id', message.id)
+    converted_id = message_id * abs(client.db_channel.id)
     string = f"get-{converted_id}"
     base64_string = await encode(string)
     link = f"https://t.me/{client.username}?start={base64_string}"
@@ -113,5 +115,5 @@ async def process_message(client: Client, message: Message):
     )
     try:
         await message.edit_reply_markup(reply_markup)
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Error updating message: {e}")
