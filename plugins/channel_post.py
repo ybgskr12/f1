@@ -79,10 +79,22 @@ async def channel_post(client: Client, message: Message):
             pass
 
 
+# Handler untuk pesan baru
 @Bot.on_message(
     filters.channel & filters.incoming & filters.chat(CHANNEL_ID)
 )
 async def new_post(client: Client, message: Message):
+    await process_message(client, message)
+
+# Handler untuk pesan yang diedit
+@Bot.on_edited_message(
+    filters.channel & filters.chat(CHANNEL_ID)
+)
+async def edited_post(client: Client, message: Message):
+    await process_message(client, message)
+
+# Fungsi untuk memproses pesan baru atau pesan yang diedit
+async def process_message(client: Client, message: Message):
     if DISABLE_CHANNEL_BUTTON:
         return
 
@@ -103,4 +115,3 @@ async def new_post(client: Client, message: Message):
         await message.edit_reply_markup(reply_markup)
     except Exception:
         pass
-
